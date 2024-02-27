@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Options Form</title>
+</head>
+<body>
+    <h1>Select Options Form</h1>
+    <form action="/page2_sub" method="POST">
+        <% 
+            let arr = [];
+            let tarr = lecpr==='lec'?['8:00-9:00','9:00-10:00','10:00-11:00','11:00-12:00','12:50-1:50','1:50-2:50','2:50-3:50','3:50-4:50']:['8:00-10:00','10:00-12:00','1:00-3:00','3:00-5:00'];
+            if(evenodd==='even') {
+                if(classnm==='FY') {
+                    if(lecpr==='lec') {
+
+                    } else {
+
+                    }
+                } else if (classnm==='SY') {
+                    if(lecpr==='lec') {
+
+                    } else {
+                        
+                    }
+                } else {
+                    if(lecpr==='lec') {
+                        arr = ['MGT','PWP','MAD','ETI','WBP','EDE'];
+                    } else {
+                        arr = ['PWP','MAD','WBP','EDE','CPE'];
+                    }
+                }
+            } else {
+                if(classnm==='FY') {
+                    if(lecpr==='lec') {
+
+                    } else {
+
+                    }
+                } else if (classnm==='SY') {
+                    if(lecpr==='lec') {
+
+                    } else {
+                        
+                    }
+                } else {
+                    if(lecpr==='lec') {
+                        
+                    } else {
+                        
+                    }
+                }
+            }
+        %>
+        <label for="subject">Select subject:</label>
+        <select name="subject" id="subject">
+            <%
+                arr.forEach((x) => {
+            %>
+            <option value="<%=x%>"><%=x%></option>
+            <%
+                });
+            %>
+        </select>
+        <br>
+        <label for="time">Select Timming:</label>
+        <select name="time" id="time">
+            <%
+                tarr.forEach((x) => {
+            %>
+            <option value="<%=x%>"><%=x%></option>
+            <%                  
+                });
+            %>
+        </select>
+        <br>
+        <%
+            if(lecpr==='lec') {
+        %>
+        <label for="classroom">Select Classroom:</label>
+        <select name="classroom" id="classroom">
+            <option value="<%= %>"><%= %></option>
+        </select>
+        <br>
+        <label for="staff">Select Staff:</label>
+        <select name="staff" id="staff">
+            <option value="<%= %>"><%= %></option>
+        </select>
+        <br>
+        <%
+            } else {
+        %>
+            <label for="batch_a">Batch A:</label><br>
+            <%
+                arr.forEach((x) => {
+            %>
+            <input type="radio" id="<%=x%>" name="batch_a" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
+            <%
+                });
+            %>
+            <br><br>
+
+            <label for="batch_b">Batch B:</label><br>
+            <%
+                arr.forEach((x) => {
+            %>
+            <input type="radio" id="<%=x%>" name="batch_b" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
+            <%
+                });
+            %>
+            <br><br>
+            
+            <label for="batch_c">Batch C:</label><br>
+            <%
+                arr.forEach((x) => {
+            %>
+            <input type="radio" id="<%=x%>" name="batch_c" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
+            <%
+                });
+            %>
+            <br><br>
+        <%            
+            }
+        %>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
