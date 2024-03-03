@@ -10,6 +10,7 @@
     <form action="/page2_sub" method="POST">
         <% 
             let arr = [];
+            staffarr = [];
             let tarr = lecpr==='lec'?['8:00-9:00','9:00-10:00','10:00-11:00','11:00-12:00','12:50-1:50','1:50-2:50','2:50-3:50','3:50-4:50']:['8:00-10:00','10:00-12:00','1:00-3:00','3:00-5:00'];
             if(evenodd==='even') {
                 if(classnm==='FY') {
@@ -75,19 +76,21 @@
             %>
         </select>
         <br>
+        <label for="day">Select Day:</label>
+        <select name="day" id="day">
+            <%
+            days = ['mon','tue','wed','thu','fri','sat'];
+            days.forEach(x => {
+            %>
+            <option value="<%=x%>"><%=x%></option>
+            <%
+            });
+            %>
+        </select>
+        <br>
         <%
             if(lecpr==='lec') {
         %>
-        <label for="classroom">Select Classroom:</label>
-        <select name="classroom" id="classroom">
-            <option value="<%= %>"><%= %></option>
-        </select>
-        <br>
-        <label for="staff">Select Staff:</label>
-        <select name="staff" id="staff">
-            <option value="<%= %>"><%= %></option>
-        </select>
-        <br>
         <%
             } else {
         %>

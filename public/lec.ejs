@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Lec</title>
+    </head>
+    <body>
+        <h1>Hello World!!!</h1>
+        <h1><%= freestaff %></h1>
+        <form action="lec_submit" name="f1" method="post">
+            <select name="staff">
+                <%
+                freestaff.forEach(x => {
+                %>
+                <option value="<%=x%>" id="<%=x%>"><%=x.toUpperCase()%></option>
+                <%
+                });
+                %>
+            </select>
+            <select name="classnm">
+                <option value="FY">FY</option>
+                <option value="SY">SY</option>
+                <option value="TY">TY</option>
+            </select>
+            <input type="submit" value="submit">
+        </form>
+    </body>
+</html>
