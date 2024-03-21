@@ -71,7 +71,6 @@ app.post('/page2_sub', (req, res) => {
           return;
         }
         if (rows.length === 1) {
-          console.log(cl);  
           freeclass.push(cl);
         }
         resolve();
@@ -95,11 +94,14 @@ app.post('/page2_sub', (req, res) => {
 });
 
 app.post('/lec_submit', (req, res) => {
-  const {staff, classroom, time, day} = req.body;
-  connection.query(`insert into ${classroom} values `, [time], (err, rows) => {
-
+  const {staff, classroom, time, day, classnm, subject} = req.body;
+  connection.query(`update ${classroom} set ${day} = '${subject} ${classnm}'  where timing = ?`, [time], (err, rows) => {
+  });
+  connection.query(`update ${staff} set ${day} = '${subject} ${classnm} ${classroom}'  where timing = ?`, [time], (err, rows) => {
+  });
+  connection.query(`update ${classnm} set ${day} = '${subject} ${classroom}'  where timing = ?`, [time], (err, rows) => {
   })
-  res.render(path.join(dirname, 'public/index.html'), {});
+  res.sendFile(path.join(dirname,'public/index.html'));
 });
 
 app.listen(port, () => {
