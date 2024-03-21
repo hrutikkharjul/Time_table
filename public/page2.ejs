@@ -13,13 +13,13 @@
             staffarr = [];
             let tarr = lecpr==='lec'?['8:00-9:00','9:00-10:00','10:00-11:00','11:00-12:00','12:50-1:50','1:50-2:50','2:50-3:50','3:50-4:50']:['8:00-10:00','10:00-12:00','1:00-3:00','3:00-5:00'];
             if(evenodd==='even') {
-                if(classnm==='FY') {
+                if(classnm==='FY1' || classnm==='FY2' || classnm==='FY3') {
                     if(lecpr==='lec') {
 
                     } else {
 
                     }
-                } else if (classnm==='SY') {
+                } else if (classnm==='SY1' || classnm==='SY2' || classnm==='SY3') {
                     if(lecpr==='lec') {
 
                     } else {
@@ -33,13 +33,13 @@
                     }
                 }
             } else {
-                if(classnm==='FY') {
+                if(classnm==='FY1' || classnm==='FY2' || classnm==='FY3') {
                     if(lecpr==='lec') {
 
                     } else {
 
                     }
-                } else if (classnm==='SY') {
+                } else if (classnm==='SY1' || classnm==='SY2' || classnm==='SY3') {
                     if(lecpr==='lec') {
 
                     } else {
@@ -129,6 +129,7 @@
         <%            
             }
         %>
+        <input type="hidden" name="classnm" value="<%= classnm %>">
         <button type="submit">Submit</button>
     </form>
 </body>
