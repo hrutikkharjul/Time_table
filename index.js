@@ -99,7 +99,7 @@ app.post('/lec_submit', (req, res) => {
   });
   connection.query(`update ${staff} set ${day} = '${subject} ${classnm} ${classroom}'  where timing = ?`, [time], (err, rows) => {
   });
-  connection.query(`update ${classnm} set ${day} = '${subject} ${classroom}'  where timing = ?`, [time], (err, rows) => {
+  connection.query(`update ${classnm} set ${day} = '${subject} ${classroom} ${staff}'  where timing = ?`, [time], (err, rows) => {
   })
   res.sendFile(path.join(dirname,'public/index.html'));
 });
