@@ -54,17 +54,7 @@
                 }
             }
         %>
-        <label for="subject">Select subject:</label>
-        <select name="subject" id="subject">
-            <%
-                arr.forEach((x) => {
-            %>
-            <option value="<%=x%>"><%=x%></option>
-            <%
-                });
-            %>
-        </select>
-        <br>
+
         <label for="time">Select Timming:</label>
         <select name="time" id="time">
             <%
@@ -91,6 +81,17 @@
         <%
             if(lecpr==='lec') {
         %>
+        <label for="subject">Select subject:</label>
+        <select name="subject" id="subject">
+            <%
+                arr.forEach((x) => {
+            %>
+            <option value="<%=x%>"><%=x%></option>
+            <%
+                });
+            %>
+        </select>
+        <br>
         <%
             } else {
         %>
