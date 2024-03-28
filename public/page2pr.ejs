@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +6,7 @@
 </head>
 <body>
     <h1>Select Options Form</h1>
-    <form action="/page2_sub" method="POST">
+    <form action="/page2pr_sub" method="POST">
         <% 
             let arr = [];
             staffarr = [];
@@ -78,17 +77,38 @@
             %>
         </select>
         <br>
-        <label for="subject">Select subject:</label>
-        <select name="subject" id="subject">
+            <label for="batch_a">Batch A:</label><br>
             <%
                 arr.forEach((x) => {
             %>
-            <option value="<%=x%>"><%=x%></option>
+            <input type="radio" id="<%=x%>" name="batch_a" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
             <%
                 });
             %>
-        </select>
-        <br>
+            <br><br>
+
+            <label for="batch_b">Batch B:</label><br>
+            <%
+                arr.forEach((x) => {
+            %>
+            <input type="radio" id="<%=x%>" name="batch_b" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
+            <%
+                });
+            %>
+            <br><br>
+            
+            <label for="batch_c">Batch C:</label><br>
+            <%
+                arr.forEach((x) => {
+            %>
+            <input type="radio" id="<%=x%>" name="batch_c" value="<%=x%>">
+            <label for="<%=x%>"><%=x%></label><br>
+            <%
+                });
+            %>
+            <br><br>
         <input type="hidden" name="classnm" value="<%= classnm %>">
         <button type="submit">Submit</button>
     </form>

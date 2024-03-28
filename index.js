@@ -26,7 +26,11 @@ app.get('/', (req, res) => {
 
 app.post('/TTSubmit', (req, res) => {
   const {evenodd, classnm, lecpr} = req.body;
-  res.render(path.join(dirname, 'public/page2'), {evenodd: evenodd, classnm: classnm, lecpr: lecpr, getConnection: getConnection});
+  if (lecpr === 'lec') {
+    res.render(path.join(dirname, 'public/page2'), {evenodd: evenodd, classnm: classnm, lecpr: lecpr, getConnection: getConnection});
+  } else {
+    res.render(path.join(dirname,'public/page2pr'), {evenodd: evenodd, classnm: classnm, lecpr: lecpr});
+  }
 });
 
 app.post('/page2_sub', (req, res) => {
@@ -102,6 +106,10 @@ app.post('/lec_submit', (req, res) => {
   connection.query(`update ${classnm} set ${day} = '${subject} ${classroom} ${staff}'  where timing = ?`, [time], (err, rows) => {
   })
   res.sendFile(path.join(dirname,'public/index.html'));
+});
+
+app.post('/page2pr_sub', (req, res) => {
+  
 });
 
 app.listen(port, () => {
