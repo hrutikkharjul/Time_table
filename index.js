@@ -109,12 +109,28 @@ app.post('/lec_submit', (req, res) => {
 });
 
 app.post('/pr_submit', (req, res) => {
-  const {staff, classroom, time, day, classnm, subject} = req.body;
-  connection.query(`update ${classroom} set ${day} = '${subject} ${classnm}'  where timing = ?`, [time], (err, rows) => {
+  const {classroom_a, classroom_b, classroom_c, sub_a, sub_b, sub_c, staff_a, staff_b, staff_c, time1, time2, time, day, classnm} = req.body;
+  connection.query(`update ${classroom_a} set ${day} = '${sub_a} ${classnm}'  where timing = ?`, [time], (err, rows) => {
   });
-  connection.query(`update ${staff} set ${day} = '${subject} ${classnm} ${classroom}'  where timing = ?`, [time], (err, rows) => {
+  connection.query(`update ${classroom_b} set ${day} = '${sub_b} ${classnm}'  where timing = ?`, [time], (err, rows) => {
   });
-  connection.query(`update ${classnm} set ${day} = '${subject} ${classroom} ${staff}'  where timing = ?`, [time], (err, rows) => {
+  connection.query(`update ${classroom_c} set ${day} = '${sub_c} ${classnm}'  where timing = ?`, [time], (err, rows) => {
+  });
+  connection.query(`update ${staff_a} set ${day} = '${sub_a} ${classnm} ${classroom_a}'  where timing = ?`, [time1], (err, rows) => {
+  });
+  connection.query(`update ${staff_a} set ${day} = '${sub_a} ${classnm} ${classroom_a}'  where timing = ?`, [time2], (err, rows) => {
+  });
+  connection.query(`update ${staff_b} set ${day} = '${sub_b} ${classnm} ${classroom_b}'  where timing = ?`, [time1], (err, rows) => {
+  });
+  connection.query(`update ${staff_b} set ${day} = '${sub_b} ${classnm} ${classroom_b}'  where timing = ?`, [time2], (err, rows) => {
+  });
+  connection.query(`update ${staff_c} set ${day} = '${sub_c} ${classnm} ${classroom_c}'  where timing = ?`, [time1], (err, rows) => {
+  });
+  connection.query(`update ${staff_c} set ${day} = '${sub_c} ${classnm} ${classroom_c}'  where timing = ?`, [time2], (err, rows) => {
+  });
+  connection.query(`update ${classnm} set ${day} = '${sub_a} ${classroom_a} ${staff_a} ${sub_b} ${classroom_b} ${staff_b} ${sub_c} ${classroom_c} ${staff_c}'  where timing = ?`, [time1], (err, rows) => {
+  })
+  connection.query(`update ${classnm} set ${day} = '${sub_a} ${classroom_a} ${staff_a} ${sub_b} ${classroom_b} ${staff_b} ${sub_c} ${classroom_c} ${staff_c}'  where timing = ?`, [time2], (err, rows) => {
   })
   res.sendFile(path.join(dirname,'public/index.html'));
 });
