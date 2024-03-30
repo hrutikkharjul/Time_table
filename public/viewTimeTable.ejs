@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabbed Page with Select Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .tab {
+            overflow: hidden;
+            background-color: #220202;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            border-bottom: 2px solid transparent;
+            color: white;
+        }
+        .tab button:hover {
+            background-color: #0a0101;
+        }
+        .tab button.active {
+            background-color: #020000;
+            border: 2px solid #a55656;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #c45f5f;
+            border-top: none;
+        }
+        select, button {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button[type="submit"] {
+            width: 15%;
+        }
+        select {
+            width: 15%
+        }
+    </style>
+</head>
+<body>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'classroom')">Classroom</button>
+    <button class="tablinks" onclick="openTab(event, 'lab')">Lab</button>
+    <button class="tablinks" onclick="openTab(event, 'staff')">Staff</button>
+    <button class="tablinks" onclick="openTab(event, 'classname')">Classname</button>
+</div>
+
+<div id="classroom" class="tabcontent">
+    <h3>Classroom Content</h3>
+    <form action="/submit_classroom" method="post">
+        <label for="classroomSelect">Select Classroom:</label><br>
+        <select id="classroomSelect" name="classroom">
+            <option value="classroom1">Classroom 1</option>
+            <option value="classroom2">Classroom 2</option>
+            <option value="classroom3">Classroom 3</option>
+        </select> <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div id="lab" class="tabcontent">
+    <h3>Lab Content</h3>
+    <form action="/submit_lab" method="post">
+        <label for="labSelect">Select Lab:</label><br>
+        <select id="labSelect" name="lab">
+            <option value="lab1">Lab 1</option>
+            <option value="lab2">Lab 2</option>
+            <option value="lab3">Lab 3</option>
+        </select> <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div id="staff" class="tabcontent">
+    <h3>Staff Content</h3>
+    <form action="/submit_staff" method="post">
+        <label for="staffSelect">Select Staff:</label><br>
+        <select id="staffSelect" name="staff">
+            <option value="staff1">Staff 1</option>
+            <option value="staff2">Staff 2</option>
+            <option value="staff3">Staff 3</option>
+        </select> <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div id="classname" class="tabcontent">
+    <h3>Classname Content</h3>
+    <form action="/submit_classname" method="post">
+        <label for="classnameSelect">Select Classname:</label><br>
+        <select id="classnameSelect" name="classname">
+            <option value="classname1">Classname 1</option>
+            <option value="classname2">Classname 2</option>
+            <option value="classname3">Classname 3</option>
+        </select> <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>

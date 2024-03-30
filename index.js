@@ -227,6 +227,10 @@ app.get('/showCreateTT', (req, res) => {
   res.sendFile(path.join(dirname,'public/createTT.html'));
 });
 
+app.get('/ViewTT', (req, res) => {
+  res.render(path.join(dirname, 'public/viewTimeTable' ))
+});
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
