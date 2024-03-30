@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Class Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="TTSubmit" name="f1" method="post">
+        <label for="evenodd">Select Even/Odd:</label>
+        <select name="evenodd" id="evenodd">
+            <option value="even" selected>Even</option>
+            <option value="odd">Odd</option>
+        </select>
+        <label for="classnm">Select Class:</label>
+        <select name="classnm" id="classnm">
+            <option value="fy1">FY1</option>
+            <option value="fy2">FY2</option>
+            <option value="fy3">FY3</option>
+            <option value="sy1">SY1</option>
+            <option value="sy2">SY2</option>
+            <option value="sy3">SY3</option>
+            <option value="ty1">TY1</option>
+            <option value="ty2">TY2</option>
+            <option value="ty3">TY3</option>
+        </select>
+        <label for="lecpr">Select Lecture/Practical:</label>
+        <select name="lecpr" id="lecpr">
+            <option value="lec">Lecture</option>
+            <option value="pr">Practical</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

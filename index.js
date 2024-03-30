@@ -109,7 +109,11 @@ app.post('/lec_submit', (req, res) => {
 });
 
 app.post('/page2pr_sub', (req, res) => {
-  
+
+});
+
+app.get('/showCreateTT', (req, res) => {
+  res.sendFile(path.join(dirname,'public/createTT.html'));
 });
 
 app.listen(port, () => {

@@ -1,33 +1,68 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Lec</title>
-    </head>
-    <body>
-        <form action="lec_submit" name="f1" method="post">
-            <select name="staff">
-                <%
-                freestaff.forEach(x => {
-                %>
-                <option value="<%=x%>" id="<%=x%>"><%=x.toUpperCase()%></option>
-                <%
-                });
-                %>
-            </select>
-            <select name="classroom">
-                <%
-                freeclass.forEach(x => {
-                %>
-                <option value="<%=x%>" id="<%=x%>"><%=x.toUpperCase()%></option>
-                <%
-                });
-                %>
-            </select>
-            <input type="hidden" name="time" value="<%= time %>">
-            <input type="hidden" name="day" value="<%= day %>">
-            <h1><%= classnm %></h1>
-            <input type="hidden" name="classnm" value="<%= classnm %>">
-            <input type="hidden" name="subject" value="<%= subject %>">
-            <input type="submit" value="submit">
-        </form>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 0;
+        }
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<form action="lec_submit" name="f1" method="post">
+    <h1><%= classnm %></h1>
+    <select name="staff">
+        <% freestaff.forEach(x => { %>
+            <option value="<%= x %>" id="<%= x %>"><%= x.toUpperCase() %></option>
+        <% }); %>
+    </select>
+    <select name="classroom">
+        <% freeclass.forEach(x => { %>
+            <option value="<%= x %>" id="<%= x %>"><%= x.toUpperCase() %></option>
+        <% }); %>
+    </select>
+    <input type="hidden" name="time" value="<%= time %>">
+    <input type="hidden" name="day" value="<%= day %>">
+    <input type="hidden" name="classnm" value="<%= classnm %>">
+    <input type="hidden" name="subject" value="<%= subject %>">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
 </html>

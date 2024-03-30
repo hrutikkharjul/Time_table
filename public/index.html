@@ -1,31 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+    }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+</style>
 </head>
 <body>
-	<form action="TTSubmit" name="f1" method="post">
-		<select name="evenodd">
-				<option value="even" selected>Even</option>
-				<option value="odd">Odd</option>
-		</select>
-		<select name="classnm">
-			<option value="fy1">FY1</option>
-			<option value="fy2">FY2</option>
-			<option value="fy3">FY3</option>
-			<option value="sy1">SY1</option>
-			<option value="sy2">SY2</option>
-			<option value="sy3">SY3</option>
-			<option value="ty1">TY1</option>
-			<option value="ty2">TY2</option>
-			<option value="ty3">TY3</option>
-		</select>
-		<select name="lecpr">
-			<option value="lec" >Lecture</option>
-			<option value="pr" >Practical</option>
-		</select>
-		<input type="submit" value="submit">
-	</form>
+
+<nav>
+    <ul>
+        <li><a href="#view-timetable">View Time Table</a></li>
+        <li><a href="/showCreateTT">Create a New Time Table</a></li>
+        <li><a href="#add-staff">Add Staff</a></li>
+        <li><a href="#add-classroom">Add Classroom</a></li>
+        <li><a href="#add-lab">Add Lab</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Welcome to the Timetable Management System</h1>
+    <p>This is the home page of our Timetable Management System. You can navigate through various options using the navigation bar above.</p>
+</div>
+
 </body>
 </html>

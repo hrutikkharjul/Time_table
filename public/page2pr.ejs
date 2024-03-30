@@ -1,8 +1,56 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Options Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select, input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-left: 22px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Select Options Form</h1>
@@ -54,7 +102,7 @@
             }
         %>
 
-        <label for="time">Select Timming:</label>
+        <label for="time">Select Timing:</label>
         <select name="time" id="time">
             <%
                 tarr.forEach((x) => {
@@ -77,38 +125,39 @@
             %>
         </select>
         <br>
-            <label for="batch_a">Batch A:</label><br>
+        <label>Select Subjects for Batch A:</label>
+        <select name="batch_a" id="batch_a">
             <%
                 arr.forEach((x) => {
             %>
-            <input type="radio" id="<%=x%>" name="batch_a" value="<%=x%>">
-            <label for="<%=x%>"><%=x%></label><br>
+            <option value="<%=x%>"><%=x%></option>
             <%
                 });
             %>
-            <br><br>
-
-            <label for="batch_b">Batch B:</label><br>
+        </select>
+        <br>
+        <label>Select Subjects for Batch B:</label>
+        <select name="batch_b" id="batch_b">
             <%
                 arr.forEach((x) => {
             %>
-            <input type="radio" id="<%=x%>" name="batch_b" value="<%=x%>">
-            <label for="<%=x%>"><%=x%></label><br>
+            <option value="<%=x%>"><%=x%></option>
             <%
                 });
             %>
-            <br><br>
-            
-            <label for="batch_c">Batch C:</label><br>
+        </select>
+        <br>
+        <label>Select Subjects for Batch C:</label>
+        <select name="batch_c" id="batch_c">
             <%
                 arr.forEach((x) => {
             %>
-            <input type="radio" id="<%=x%>" name="batch_c" value="<%=x%>">
-            <label for="<%=x%>"><%=x%></label><br>
+            <option value="<%=x%>"><%=x%></option>
             <%
                 });
             %>
-            <br><br>
+        </select>
+        <br>
         <input type="hidden" name="classnm" value="<%= classnm %>">
         <button type="submit">Submit</button>
     </form>

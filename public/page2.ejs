@@ -4,6 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Options Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Select Options Form</h1>
@@ -55,7 +96,7 @@
             }
         %>
 
-        <label for="time">Select Timming:</label>
+        <label for="time">Select Timing:</label>
         <select name="time" id="time">
             <%
                 tarr.forEach((x) => {
@@ -69,16 +110,16 @@
         <label for="day">Select Day:</label>
         <select name="day" id="day">
             <%
-            days = ['mon','tue','wed','thu','fri','sat'];
+            days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             days.forEach(x => {
             %>
-            <option value="<%=x%>"><%=x%></option>
+            <option value="<%=x.toLowerCase()%>"><%=x%></option>
             <%
             });
             %>
         </select>
         <br>
-        <label for="subject">Select subject:</label>
+        <label for="subject">Select Subject:</label>
         <select name="subject" id="subject">
             <%
                 arr.forEach((x) => {
