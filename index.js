@@ -108,9 +108,104 @@ app.post('/lec_submit', (req, res) => {
   res.sendFile(path.join(dirname,'public/index.html'));
 });
 
+app.post('/pr_submit', (req, res) => {
+  const {staff, classroom, time, day, classnm, subject} = req.body;
+  connection.query(`update ${classroom} set ${day} = '${subject} ${classnm}'  where timing = ?`, [time], (err, rows) => {
+  });
+  connection.query(`update ${staff} set ${day} = '${subject} ${classnm} ${classroom}'  where timing = ?`, [time], (err, rows) => {
+  });
+  connection.query(`update ${classnm} set ${day} = '${subject} ${classroom} ${staff}'  where timing = ?`, [time], (err, rows) => {
+  })
+  res.sendFile(path.join(dirname,'public/index.html'));
+});
+
 app.post('/page2pr_sub', (req, res) => {
+  const { classnm, batch_a, batch_b, batch_c, time, day } = req.body;
+  const timeRange = time.split('-'); // Split the time range
+  const startTime = timeRange[0];
+  const endTime = timeRange[1];
+  
+  // Generate time slots
+  const timeSlots = generateTimeSlots(startTime, endTime);
+  let sl = [];
+  let freestaff = [];
+  let freeclass = [];
+
+  // Function to fetch staff list
+  function fetchStaffList() {
+    return new Promise((resolve, reject) => {
+      connection.query('SELECT * FROM staff_list', (err, rows) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        sl = rows.map(row => row.abr);
+        resolve();
+      });
+    });
+  }
+
+  function checkAvailability(abr, time) {
+    return new Promise((resolve, reject) => {
+      connection.query(`SELECT * FROM ${abr} WHERE timing = ? AND ${day} IS NULL`, [time], (err, rows) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        if (rows.length > 0) {
+          freestaff.push(abr);
+          freestaff = freestaff.filter((item, index) => freestaff.indexOf(item) === index);
+        }
+        resolve();
+      });
+    });
+  }
+  function checkLabAvailability(cl) {
+    return new Promise((resolve, reject) => {
+      connection.query(`SELECT * FROM ${cl} WHERE timing = ? AND ${connection.escapeId(day)} IS NULL`, [time], (err, rows) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        if (rows.length === 1) {
+          freeclass.push(cl);
+        }
+        resolve();
+      });
+    });
+  }
+
+  function generateTimeSlots(startTime, endTime) {
+    const timeSlots = [];
+    let currentHour = parseInt(startTime.split(':')[0]);
+  
+    while (currentHour < parseInt(endTime.split(':')[0])) {
+      const nextHour = currentHour + 1;
+      timeSlots.push(`${currentHour}:00-${nextHour}:00`);
+      currentHour = nextHour;
+    }
+  
+    return timeSlots;
+  }
+  
+
+  fetchStaffList()
+    .then(() => {
+      const staffPromises = sl.map(abr => {timeSlots.map(time => checkAvailability(abr, time ))});
+      const classPromises = ['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6'].map(cl => checkLabAvailability(cl));
+      return Promise.all([...staffPromises, ...classPromises]);
+    })
+    .then(() => {
+      res.render(path.join(dirname, 'public/pr'), { freestaff: freestaff, time: time, time1: timeSlots[0], time2: timeSlots[1], day: day, freeclass: freeclass, classnm: classnm, batch_a: batch_a, batch_b: batch_b, batch_c: batch_c});
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      res.status(500).send('An error occurred');
+    });
+    
 
 });
+
 
 app.get('/showCreateTT', (req, res) => {
   res.sendFile(path.join(dirname,'public/createTT.html'));
