@@ -98,7 +98,7 @@ app.post('/page2_sub', (req, res) => {
 });
 
 app.post('/lec_submit', (req, res) => {
-  const {staff, classroom, time, day, classnm, subject} = req.body;
+  const {staff, classroom_a, classroom_b, classroom_c, staff_a, staff_b, staff_c, time1, time2, time, day, classnm, subject} = req.body;
   connection.query(`update ${classroom} set ${day} = '${subject} ${classnm}'  where timing = ?`, [time], (err, rows) => {
   });
   connection.query(`update ${staff} set ${day} = '${subject} ${classnm} ${classroom}'  where timing = ?`, [time], (err, rows) => {
