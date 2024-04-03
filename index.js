@@ -269,6 +269,76 @@ app.post('/submit_classroom', async (req, res) => {
   res.render(path.join(dirname, 'public/ViewClassroomTT'), {data: data});
 });
 
+app.post('/submit_lab', async (req, res) => {
+  const {lab} = req.body;
+  function executeQuery(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+  }
+
+  // Async function to fetch data and populate 'data' array
+  async function fetchData() {
+      try {
+          let results = await executeQuery(`SELECT * FROM ${lab}`);
+          let data = [];
+          for (let i = 0; i < results.length; i++) {
+              let row = results[i];
+              data.push([row.timing || '-',  row.mon || '-', row.tue || '-', row.wed || '-', row.thu || '-', row.fri || '-', row.sat || '-']);
+          }
+          return data;
+      } catch (error) {
+          console.error('Error fetching data: ' + error);
+          return [];
+      }
+  }
+
+  // Call async function to fetch data and wait for the result
+  let data = await fetchData();
+  res.render(path.join(dirname, 'public/viewLabTT'), {data: data});
+});
+
+app.post('/submit_classname', async (req, res) => {
+  const {classname} = req.body;
+  function executeQuery(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+  }
+
+  // Async function to fetch data and populate 'data' array
+  async function fetchData() {
+      try {
+          let results = await executeQuery(`SELECT * FROM ${classname}`);
+          let data = [];
+          for (let i = 0; i < results.length; i++) {
+              let row = results[i];
+              data.push([row.timing || '-',  row.mon || '-', row.tue || '-', row.wed || '-', row.thu || '-', row.fri || '-', row.sat || '-']);
+          }
+          return data;
+      } catch (error) {
+          console.error('Error fetching data: ' + error);
+          return [];
+      }
+  }
+
+  // Call async function to fetch data and wait for the result
+  let data = await fetchData();
+  res.render(path.join(dirname, 'public/viewClassTT'), {data: data});
+});
+
 function getConnection() {
   return connection;
 }
