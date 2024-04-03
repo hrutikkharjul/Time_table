@@ -31,15 +31,24 @@
             <th>Friday</th>
             <th>Saturday</th>
         </tr>
-        <% for (let i = 8; i <= 16; i++) { %>
+        <% 
+            let arr = ["8:00","9:00","10:00","11:00","12:00","12:50","1:50","2:50","3:50","4:50"];
+            for (let i = 0; i < data.length; i++) { %>
             <tr>
-                <td><%= i %>:00 - <%= i+1 %>:00</td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
-                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= arr[i] %> - <%= arr[i+1]%></td>
+                <%
+                    if(arr[i]==="12:00") {
+                %>
+                    <td colspan="6">RECESS</td>
+                <%
+                    } else {
+                        for(let j=0; j<=5; ++j) {
+                %>
+                        <td><%= data[i][j] %></td>
+                <%
+                        }
+                    }
+                %>
             </tr>
         <% } %>
     </table>

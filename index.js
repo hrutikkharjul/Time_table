@@ -234,9 +234,39 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 
-app.post('/submit_classroom', (req, res) => {
+app.post('/submit_classroom', async (req, res) => {
   const {classroom} = req.body;
-  res.render(path.join(dirname, 'public/ViewClassroomTT'), {classroom: classroom});
+  function executeQuery(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (error, results) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+  }
+
+  // Async function to fetch data and populate 'data' array
+  async function fetchData() {
+      try {
+          let results = await executeQuery(`SELECT * FROM ${classroom}`);
+          let data = [];
+          for (let i = 0; i < results.length; i++) {
+              let row = results[i];
+              data.push([row.mon || '-', row.tue || '-', row.wed || '-', row.thu || '-', row.fri || '-', row.sat || '-']);
+          }
+          return data;
+      } catch (error) {
+          console.error('Error fetching data: ' + error);
+          return [];
+      }
+  }
+
+  // Call async function to fetch data and wait for the result
+  let data = await fetchData();
+  res.render(path.join(dirname, 'public/ViewClassroomTT'), {data: data});
 });
 
 function getConnection() {
