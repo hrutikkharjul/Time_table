@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timetable</h1>
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+        <% for (let i = 8; i <= 16; i++) { %>
+            <tr>
+                <td><%= i %>:00 - <%= i+1 %>:00</td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+                <td><%= (i < 12 || i == 12) ? "Class" : (i == 12.5) ? "Recess" : "Break" %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

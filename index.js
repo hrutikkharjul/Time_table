@@ -222,7 +222,6 @@ app.post('/page2pr_sub', (req, res) => {
 
 });
 
-
 app.get('/showCreateTT', (req, res) => {
   res.sendFile(path.join(dirname,'public/createTT.html'));
 });
@@ -235,6 +234,10 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
 
+app.post('/submit_classroom', (req, res) => {
+  const {classroom} = req.body;
+  res.render(path.join(dirname, 'public/ViewClassroomTT'), {classroom: classroom});
+});
 
 function getConnection() {
   return connection;
